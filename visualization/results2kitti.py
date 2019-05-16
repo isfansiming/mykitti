@@ -17,7 +17,7 @@ def results2kitti():
     file_dir = 'data/KITTI/object/training/image_2'
     idx_file = 'data/KITTI/object/image_sets/val.txt'
     result_dir = 'work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/results'
-    
+
     #load model and checkpoint
     cfg = mmcv.Config.fromfile(config)  # faster_rcnn_r50_fpn_1x.py
     cfg.model.pretrained = None
@@ -41,7 +41,7 @@ def results2kitti():
         print('Writing %06d.txt' %(idx))
         img=mmcv.imread(os.path.join(file_dir, '%06d.png' % (idx)))
         result = inference_detector(model, img, cfg, device='cuda:0')
-        # convert result[:3][:5*n] to a txt file
+        # convert result[:3][n][5] to a txt file
         outputs=[]
         for type_id in range(3):#classes
             for j,r in enumerate(result[type_id]):#a class has j object
@@ -59,3 +59,6 @@ def results2kitti():
 
 if __name__ == '__main__':
     results2kitti()
+    #Then use ./kitti_eval/evaluate_object_3d_offline data/KITTI/object/training/label_2 
+    # work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/results
+    # to evaluate
