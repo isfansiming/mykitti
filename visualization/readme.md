@@ -1,15 +1,20 @@
 
-##2019.5.16
+# 2019.5.16
 
-##write the detection result to txt files and eval
+## write the detection result to txt files and eval
 PS:result[:3][n][5]
+3 means ('Car','Pedestrian','Cyclist')
+n means each class has n object
+5 means xmin,ymin,xmax,ymax,probability
 
 run
+
     python tools/result2kitti.py
 then
+
     ./kitti_eval/evaluate_object_3d_offline data/KITTI/object/training/label_2 work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/results
 
-------
+
 
     Thank you for participating in our evaluation!
     Loading detections...
@@ -33,4 +38,3 @@ then
     Your evaluation results are available at:
     work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/results
 
-------
