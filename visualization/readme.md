@@ -14,6 +14,7 @@ then
 
     ./kitti_eval/evaluate_object_3d_offline data/KITTI/object/training/label_2 work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/results
 
+kitti_eval is in https://github.com/prclibo/kitti_eval
 ------
 
     Thank you for participating in our evaluation!
