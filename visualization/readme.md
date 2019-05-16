@@ -1,7 +1,8 @@
-
-# 2019.5.16
-
-## write the detection result to txt files and eval
+# readm
+edit 2019.5.16
+## results2kitti()
+Convert mmdetection's results to kitti label's format.
+needs config,pth,path of images,indexs,results.
 PS:result[:3][n][5]
 3 means ('Car','Pedestrian','Cyclist')
 n means each class has n object
