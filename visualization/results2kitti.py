@@ -11,18 +11,20 @@ def results2kitti():
     import cv2
     import numpy as np
 
-
-    #model
-    cfg = mmcv.Config.fromfile(
-        'configs/pascal_voc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513.py')  # faster_rcnn_r50_fpn_1x.py
-    cfg.model.pretrained = None
-    model = build_detector(cfg.model, test_cfg=cfg.test_cfg)
-    _ = load_checkpoint(model, 'work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/latest.pth')
-
-    #path
+    #can edit
+    config='configs/pascal_voc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513.py'
+    checkpoint = 'work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/latest.pth'
     file_dir = 'data/KITTI/object/training/image_2'
     idx_file = 'data/KITTI/object/image_sets/val.txt'
     result_dir = 'work_dirs/carpedcyc/faster_rcnn_r50_fpn_1x_voc0712_carpedcyc190513/results'
+    
+    #load model and checkpoint
+    cfg = mmcv.Config.fromfile(config)  # faster_rcnn_r50_fpn_1x.py
+    cfg.model.pretrained = None
+    model = build_detector(cfg.model, test_cfg=cfg.test_cfg)
+    _ = load_checkpoint(model, checkpoint)
+
+    #mkdir
     if not os.path.exists(result_dir): os.mkdir(result_dir)
     output_dir = os.path.join(result_dir, 'data')
     if not os.path.exists(output_dir): os.mkdir(output_dir)
